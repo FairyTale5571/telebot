@@ -43,6 +43,9 @@ type Chat struct {
 	LastName  string `json:"last_name"`
 	Username  string `json:"username"`
 
+	// Forums
+	IsForum bool `json:"is_forum"`
+
 	// Returns only in getChat
 	Bio              string        `json:"bio,omitempty"`
 	Photo            *ChatPhoto    `json:"photo,omitempty"`
@@ -162,14 +165,13 @@ func (c *ChatMemberUpdate) Time() time.Time {
 //
 // Example:
 //
-//		group := tele.ChatID(-100756389456)
-//		b.Send(group, "Hello!")
+//	group := tele.ChatID(-100756389456)
+//	b.Send(group, "Hello!")
 //
-//		type Config struct {
-//			AdminGroup tele.ChatID `json:"admin_group"`
-//		}
-//		b.Send(conf.AdminGroup, "Hello!")
-//
+//	type Config struct {
+//		AdminGroup tele.ChatID `json:"admin_group"`
+//	}
+//	b.Send(conf.AdminGroup, "Hello!")
 type ChatID int64
 
 // Recipient returns chat ID (see Recipient interface).

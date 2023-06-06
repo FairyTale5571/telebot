@@ -7,7 +7,7 @@
 [![Discuss on Telegram](https://img.shields.io/badge/telegram-discuss-0088cc.svg)](https://t.me/go_telebot)
 
 ```bash
-go get -u gopkg.in/telebot.v3
+go get -u github.com/fairytale5571/telebot
 ```
 
 * [Overview](#overview)

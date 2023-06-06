@@ -250,6 +250,21 @@ type Message struct {
 
 	// Inline keyboard attached to the message.
 	ReplyMarkup *ReplyMarkup `json:"reply_markup,omitempty"`
+
+	// Forums
+
+	// (Optional) For IsTopicMessage entity type only.
+	IsTopicMessage bool `json:"is_topic_message,omitempty"`
+
+	// (Optional) For MessageThreadID entity type only.
+	MessageThreadID int `json:"message_thread_id,omitempty"`
+
+	ForumTopicCreated         *ForumTopicCreated         `json:"forum_topic_created,omitempty"`
+	ForumTopicEdited          *ForumTopicEdited          `json:"forum_topic_edited,omitempty"`
+	ForumTopicClosed          *ForumTopicClosed          `json:"forum_topic_closed,omitempty"`
+	ForumTopicReopened        *ForumTopicReopened        `json:"forum_topic_reopened,omitempty"`
+	GeneralForumTopicHidden   *GeneralForumTopicHidden   `json:"general_forum_topic_hidden,omitempty"`
+	GeneralForumTopicUnhidden *GeneralForumTopicUnhidden `json:"general_forum_topic_unhidden,omitempty"`
 }
 
 // MessageEntity object represents "special" parts of text messages,
@@ -359,13 +374,17 @@ func (m *Message) FromChannel() bool {
 	return m.Chat.Type == ChatChannel
 }
 
+// FromForum returns true, if message came from a forum.
+func (m *Message) FromForum() bool {
+	return m.Chat.IsForum
+}
+
 // IsService returns true, if message is a service message,
 // returns false otherwise.
 //
 // Service messages are automatically sent messages, which
 // typically occur on some global action. For instance, when
 // anyone leaves the chat or chat title changes.
-//
 func (m *Message) IsService() bool {
 	fact := false
 
@@ -386,7 +405,6 @@ func (m *Message) IsService() bool {
 //
 // It's safer than manually slicing Text because Telegram uses
 // UTF-16 indices whereas Go string are []byte.
-//
 func (m *Message) EntityText(e MessageEntity) string {
 	text := m.Text
 	if text == "" {
