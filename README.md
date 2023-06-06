@@ -7,7 +7,7 @@
 [![Discuss on Telegram](https://img.shields.io/badge/telegram-discuss-0088cc.svg)](https://t.me/go_telebot)
 
 ```bash
-go get -u github.com/fairytale5571/telebot
+go get -u github.com/fairytale5571/telebot/v3
 ```
 
 * [Overview](#overview)
@@ -52,7 +52,7 @@ import (
 	"os"
 	"time"
 
-	tele "github.com/fairytale5571/telebot"
+	tele "github.com/fairytale5571/telebot/v3"
 )
 
 func main() {
@@ -136,7 +136,7 @@ Telebot has a simple and recognizable way to set up middleware — chained funct
 Import a `middleware` package to get some basic out-of-box middleware
 implementations:
 ```go
-import "github.com/fairytale5571/telebot/middleware"
+import "github.com/fairytale5571/telebot/v3/middleware"
 ```
 
 ```go

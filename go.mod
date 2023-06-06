@@ -1,4 +1,4 @@
-module github.com/fairytale5571/telebot
+module github.com/fairytale5571/telebot/v3
 
 go 1.20
 

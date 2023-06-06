@@ -9,7 +9,7 @@ import (
 	"sync"
 	"text/template"
 
-	tele "github.com/fairytale5571/telebot"
+	tele "github.com/fairytale5571/telebot/v3"
 	"github.com/goccy/go-yaml"
 )
 

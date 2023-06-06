@@ -1,7 +1,7 @@
 package layout
 
 import (
-	tele "github.com/fairytale5571/telebot"
+	tele "github.com/fairytale5571/telebot/v3"
 )
 
 // LocaleFunc is the function used to fetch the locale of the recipient.
