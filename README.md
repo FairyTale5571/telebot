@@ -52,7 +52,7 @@ import (
 	"os"
 	"time"
 
-	tele "gopkg.in/telebot.v3"
+	tele "github.com/fairytale5571/telebot"
 )
 
 func main() {
@@ -136,7 +136,7 @@ Telebot has a simple and recognizable way to set up middleware — chained funct
 Import a `middleware` package to get some basic out-of-box middleware
 implementations:
 ```go
-import "gopkg.in/telebot.v3/middleware"
+import "github.com/fairytale5571/telebot/middleware"
 ```
 
 ```go
