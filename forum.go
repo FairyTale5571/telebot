@@ -109,8 +109,6 @@ type UnhideGeneralForumTopicParams struct {
 
 // CreateForumTopic creates a new forum topic.
 func (b *Bot) CreateForumTopic(topic *CreateForumTopicParams) (*ForumTopic, error) {
-	var res *ForumTopic
-
 	return nil, nil
 }
 
