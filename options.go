@@ -11,7 +11,6 @@ import (
 // flags instead.
 //
 // Supported options are defined as iota-constants.
-//
 type Option int
 
 const (
@@ -54,10 +53,12 @@ func Placeholder(text string) *SendOptions {
 // Despite its power, SendOptions is rather inconvenient to use all
 // the way through bot logic, so you might want to consider storing
 // and re-using it somewhere or be using Option flags instead.
-//
 type SendOptions struct {
 	// If the message is a reply, original message.
 	ReplyTo *Message
+
+	// MessageThreadID is the ID of the message thread this message belongs to.
+	MessageThreadID int
 
 	// See ReplyMarkup struct definition.
 	ReplyMarkup *ReplyMarkup
@@ -151,6 +152,10 @@ func (b *Bot) embedSendOptions(params map[string]string, opt *SendOptions) {
 
 	if opt.ReplyTo != nil && opt.ReplyTo.ID != 0 {
 		params["reply_to_message_id"] = strconv.Itoa(opt.ReplyTo.ID)
+	}
+
+	if opt.MessageThreadID != 0 {
+		params["message_thread_id"] = strconv.Itoa(opt.MessageThreadID)
 	}
 
 	if opt.DisableWebPagePreview {
