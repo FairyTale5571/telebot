@@ -117,23 +117,26 @@ func (r *ReplyMarkup) Split(max int, btns []Btn) []Row {
 }
 
 func (r *ReplyMarkup) Inline(rows ...Row) {
-	inlineKeys := make([][]InlineButton, 0, len(rows))
-	for i, row := range rows {
-		keys := make([]InlineButton, 0, len(row))
-		for j, btn := range row {
-			btn := btn.Inline()
-			if btn == nil {
-				panic(fmt.Sprintf(
-					"telebot: button row %d column %d is not an inline button",
-					i, j))
-			}
-			keys = append(keys, *btn)
-		}
-		inlineKeys = append(inlineKeys, keys)
-	}
+    newLength := len(r.InlineKeyboard) + len(rows)
+    inlineKeys := make([][]InlineButton, len(r.InlineKeyboard), newLength)
+    copy(inlineKeys, r.InlineKeyboard)
 
-	r.InlineKeyboard = inlineKeys
+    for _, row := range rows {
+        keys := make([]InlineButton, 0, len(row))
+        for j, btn := range row {
+            btn := btn.Inline()
+            if btn == nil {
+                panic(fmt.Sprintf(
+                    "telebot: button row %d column %d is not an inline button",
+                    len(inlineKeys), j))
+            }
+            keys = append(keys, *btn)
+        }
+        inlineKeys = append(inlineKeys, keys)
+    }
+    r.InlineKeyboard = inlineKeys
 }
+
 
 func (r *ReplyMarkup) Reply(rows ...Row) {
 	replyKeys := make([][]ReplyButton, 0, len(rows))
